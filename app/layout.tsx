@@ -1,11 +1,12 @@
-import "./globals.css";
-import type { ReactNode } from "react";
+import './globals.css';
+import type { ReactNode } from 'react';
+import Head from "@/components/Head"
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default function Layout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <div className="text-center font-bold py-4">hello global header</div>
+        <Head />
         {children}
       </body>
     </html>

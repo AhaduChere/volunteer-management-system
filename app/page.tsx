@@ -1,8 +1,5 @@
-export default function page() {
-  return (
-    <div>
-      hello home page
-    </div>
-  )
-}
+import LoginForm from '@/components/LoginForm';
 
+export default function Page() {
+  return <LoginForm />;
+}
