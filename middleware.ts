@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
 
-  const isLoggedIn = false;
+  const isLoggedIn = Boolean(request.cookies.get('UserID'));
 
   const path = request.nextUrl.pathname;
   const isRoot = path === '/';
@@ -21,7 +21,6 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/',
-    '/((?!_next/static|_next/image|favicon.ico|favicon.svg|favicon.png|Camera.svg|robots.txt|sitemap.xml).*)'
+    '/((?!api|_next/static|_next/image|favicon.ico|favicon.svg|favicon.png|Camera.svg|robots.txt|sitemap.xml).*)'
   ],
 };
