@@ -11,7 +11,7 @@ export default function page1() {
         Welcome to VMS, [Username TBA]
       </div>
       <div className="text-center ">
-        <button onClick={Logout} className="cursor-pointer font-bold text-black"> Logout</button>
+        <button onClick={Logout} className="cursor-pointer font-bold text-black"> Click to Logout</button>
       </div>
     </div>
 

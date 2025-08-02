@@ -28,7 +28,7 @@ export async function middleware(request: NextRequest) {
     const response = await fetch(`${baseUrl}/api/auth`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ token: token.value }),
+      body: JSON.stringify({ action: "verify", token: token.value }),
     });
     isLoggedIn = response.ok;
   }
@@ -38,7 +38,7 @@ export async function middleware(request: NextRequest) {
   if (!isLoggedIn && !isRoot) {
     return NextResponse.redirect(new URL('/', request.url)); // go to login if not logged in
   } else if (isLoggedIn && isRoot) {
-    return NextResponse.redirect(new URL('/admin', request.url)); // go to "home" if try to access login while logged in
+    return NextResponse.redirect(new URL('/admin', request.url)); // go to "home" if try to access login while already logged in
   } else {
     return NextResponse.next();
   }
