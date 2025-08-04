@@ -6,10 +6,85 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../app/generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model User {
+  u_id Int @id @default(autoincrement())
+  role Int
+  username String
+  pass String
+
+  Volunteer Volunteer[]
+}
+
+model Volunteer {
+  v_id Int @id @default(autoincrement())
+  user_id Int? 
+  f_name String 
+  l_name String
+  approval_status String
+
+  user User? @relation( fields: [user_id], references: [u_id], onDelete: Cascade)
+
+  VolunteerInfo VolunteerInfo[]
+  ContactInfo ContactInfo[]
+  EmergencyContactInfo EmergencyContactInfo[]
+
+  Opportunity Opportunity[] @relation("VolunteerOpportunities")
+}
+
+model VolunteerInfo {
+  i_id Int @id @default(autoincrement())
+  v_id Int  @unique
+  skills String[]
+  avail_times String[]
+  ed_background String
+  licenses String[]
+  ss_number Boolean
+  driver_license Boolean
+
+  volunteer Volunteer @relation(fields: [v_id], references: [v_id], onDelete: Cascade)
+}
+
+model Opportunity {
+  opp_id Int @id @default(autoincrement())
+  center_name String
+  date_posted DateTime @default(now())
+
+  Volunteer Volunteer[] @relation("VolunteerOpportunities")
+}
+
+model Address {
+  a_id Int @id @default(autoincrement())
+  c_id Int @unique
+  address String
+  city String
+  state String
+  zip String
+
+  contact ContactInfo @relation(fields: [a_id], references: [c_id], onDelete: Cascade)
+}
+
+model ContactInfo {
+  c_id Int @id @default(autoincrement())
+  v_id Int
+  phone String
+  email String
+  
+  volunteer Volunteer @relation(fields: [v_id], references: [v_id], onDelete: Cascade)
+  Address Address[]
+}
+
+model EmergencyContactInfo {
+  ec_id Int @id @default(autoincrement())
+  v_id Int
+  phone String
+  email String
+
+  volunteer Volunteer @relation(fields: [v_id], references: [v_id], onDelete: Cascade)
 }
