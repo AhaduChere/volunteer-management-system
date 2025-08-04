@@ -7,9 +7,6 @@ export default function page1() {
   }
   return (
     <div>
-      <div className="text-black text-center font-bold">
-        Welcome to VMS, [Username TBA]
-      </div>
       <div className="text-center ">
         <button onClick={Logout} className="cursor-pointer font-bold text-black"> Click to Logout</button>
       </div>
