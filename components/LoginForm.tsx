@@ -14,15 +14,18 @@ export default function LoginForm() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ action: "login", username, password }),
         });
-        const data = await response.json()
-        if (data) {
+
+        const data = await response.json();
+
+        if (response.ok && data.token) {
           document.cookie = `session_token=${data.token}; path=/;`;
           window.location.reload();
         } else {
-          alert('Invalid Credentials');
+          alert(data.error || "Login failed");
         }
-      } catch (error) {
-        console.error("Login failed:", error);
+      } catch (err) {
+        console.error("Login error:", err);
+        alert("Network error");
       }
     };
     await login();
@@ -32,7 +35,7 @@ export default function LoginForm() {
       <div className="min-h-[384px] min-w-[464px] px-8 py-6 bg-gray-900 rounded-xl">
         <div className="flex flex-col justify-center items-center h-full select-none">
           <div className="flex flex-col items-center justify-center gap-2 mb-4">
-            <Image src="/Camera.svg" alt="Camera Icon" width={32} height={32} className="w-8 h-8"/>
+            <Image src="/Camera.svg" alt="Camera Icon" width={32} height={32} className="w-8 h-8" />
             <p className="m-0 text-[16px] font-semibold text-white">Admin Login</p>
           </div>
           <div className="w-full flex flex-col gap-4">
