@@ -14,9 +14,7 @@ export default function LoginForm() {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ action: "login", username, password }),
         });
-
         const data = await response.json();
-
         if (response.ok && data.token) {
           document.cookie = `session_token=${data.token}; path=/;`;
           window.location.reload();
