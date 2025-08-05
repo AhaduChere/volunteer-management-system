@@ -26,9 +26,9 @@ import { NextRequest, NextResponse } from 'next/server';
 
         const user = await prisma.user.create({
             data: {
-                role: username,
-                username: password,
-                pass: role
+                role: role,
+                username: username,
+                pass: password
             }
         });
 

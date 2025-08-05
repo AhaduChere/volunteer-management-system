@@ -5,7 +5,17 @@ async function findVolunteer(id:number){
     try{
         const volunteer = await prisma.volunteer.findUnique(
             {
-                where: {v_id: id}
+                where: {v_id: id},
+                include: {
+                    Opportunity: true,
+                    VolunteerInfo: true,
+                    ContactInfo: {
+                        include: {
+                            Address: true
+                        }
+                    },
+                    EmergencyContactInfo: true
+                }
             }
         );
 

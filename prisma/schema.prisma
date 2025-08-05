@@ -83,6 +83,8 @@ model ContactInfo {
 model EmergencyContactInfo {
   ec_id Int @id @default(autoincrement())
   v_id Int
+  first_name String
+  last_name String
   phone String
   email String
 
