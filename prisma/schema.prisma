@@ -67,12 +67,12 @@ model Address {
   state String
   zip String
 
-  contact ContactInfo @relation(fields: [a_id], references: [c_id], onDelete: Cascade)
+  contact ContactInfo @relation(fields: [c_id], references: [c_id], onDelete: Cascade)
 }
 
 model ContactInfo {
   c_id Int @id @default(autoincrement())
-  v_id Int
+  v_id Int @unique
   phone String
   email String
   
@@ -82,7 +82,7 @@ model ContactInfo {
 
 model EmergencyContactInfo {
   ec_id Int @id @default(autoincrement())
-  v_id Int
+  v_id Int @unique
   first_name String
   last_name String
   phone String

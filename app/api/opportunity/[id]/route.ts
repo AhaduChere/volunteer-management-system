@@ -5,7 +5,10 @@ async function findOpportunity(id:number){
     try{
         const opportunity = await prisma.opportunity.findUnique(
             {
-                where: {opp_id: id}
+                where: {opp_id: id},
+                include: {
+                    Volunteer: true
+                }
             }
         );
 

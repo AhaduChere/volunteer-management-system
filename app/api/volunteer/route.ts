@@ -15,9 +15,9 @@ import { NextRequest, NextResponse } from 'next/server';
 
     export async function POST(req: NextRequest){
         const body = await req.json();
-        const { userId, fName, lName, approvalStatus, skills, availTimes, edBackground, licenses, ssNumber, driverLicense, phone, email, ecPhone, ecEmail, ecFirstName, ecLastName } = body;
+        const { userId, fName, lName, approvalStatus, skills, availTimes, edBackground, licenses, ssNumber, driverLicense, phone, email, ecPhone, ecEmail, ecFirstName, ecLastName, address, city, state, zip } = body;
 
-        if(!fName || !lName || !approvalStatus || !skills || !availTimes || !edBackground || !licenses || !ssNumber || !driverLicense || !phone || !email){
+        if(!fName || !lName || !approvalStatus || !skills || !availTimes || !edBackground || !licenses || !ssNumber || !driverLicense || !phone || !email || !ecPhone || !ecEmail || !ecFirstName || !ecLastName || !address || !city || !state || !zip){
             return NextResponse.json({error: 'Variable(s) not found'},{status: 404});
         }
 
@@ -40,7 +40,15 @@ import { NextRequest, NextResponse } from 'next/server';
                 ContactInfo: {
                     create: {
                         phone: phone,
-                        email: email
+                        email: email,
+                        Address: {
+                            create: [{
+                                address: address,
+                                city: city,
+                                state: state,
+                                zip: zip
+                            }]
+                        }
                     }
                 },
                 EmergencyContactInfo: {
@@ -54,7 +62,11 @@ import { NextRequest, NextResponse } from 'next/server';
             },
             include: {
                 VolunteerInfo: true,
-                ContactInfo: true,
+                ContactInfo: {
+                    include: {
+                        Address: true
+                    }
+                },
                 EmergencyContactInfo: true
             }
         });
