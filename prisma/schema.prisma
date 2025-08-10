@@ -76,6 +76,7 @@ model ContactInfo {
   phone String
   email String
   
+  @@unique([c_id, v_id])
   volunteer Volunteer @relation(fields: [v_id], references: [v_id], onDelete: Cascade)
   Address Address[]
 }
