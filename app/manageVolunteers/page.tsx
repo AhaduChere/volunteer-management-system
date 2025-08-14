@@ -43,7 +43,7 @@ export default function VolunteerSummaryPage() {
   });
 
   return (
-    <div className="bg-zinc-950 min-h-screen text-white p-6 font-sans">
+    <div className=" min-h-screen text-white p-6 font-sans">
       <h2 className="text-blue-400 text-2xl font-bold mb-4">Volunteer Management</h2>
 
       {/* Filter and Search */}

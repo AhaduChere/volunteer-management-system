@@ -64,7 +64,7 @@ export default function LoginForm() {
         <div>
           <button
             type="submit"
-            className="px-8 py-2 bg-blue-500 text-white w-full font-semibold rounded-lg cursor-pointer select-none active:mt-0.5">
+            className="px-8 py-2 bg-[#536dac] hover:bg-[#4c5a7a] duration-200 text-white w-full font-semibold rounded-lg cursor-pointer select-none active:mt-0.5">
             Login
           </button>
         </div>

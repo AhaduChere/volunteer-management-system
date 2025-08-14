@@ -1,9 +1,9 @@
 @import "tailwindcss";
-
+/*fbf5ff, cabed1*/
 :root {
-  --color-bg: #eeeeee;
+  --color-bg: linear-gradient(to top, #bbcffa 40%, #93afec 60%);
 }
 
 body {
-  background-color: var(--color-bg);
+  background: var(--color-bg);
 }
