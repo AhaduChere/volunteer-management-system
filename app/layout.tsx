@@ -16,7 +16,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       <body>
         <Head />
         {pathname !== '/' && (
-          <header className="fixed w-full bg-gray-900 flex text-white py-4 shadow-md  justify-between items-center px-6">
+          <header className="fixed w-full bg-[#12173f] flex text-white py-4 shadow-md  justify-between items-center px-6">
             <h1
               className="text-2xl font-bold select-none cursor-pointer hover:text-blue-400 transition-colors"
               onClick={() => window.location.href = "/admin"}
