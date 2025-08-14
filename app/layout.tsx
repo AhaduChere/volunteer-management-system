@@ -11,7 +11,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       <body>
         <Head />
         {pathname !== '/' && (
-          <header className="bg-gray-800 text-white py-4 shadow-md">
+          <header className="bg-gray-900 text-white py-4 shadow-md">
             <h1 className="text-2xl font-semibold text-center select-none">
               Volunteer Management System
             </h1>
