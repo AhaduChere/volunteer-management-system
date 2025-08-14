@@ -43,8 +43,7 @@ export default function VolunteerSummaryPage() {
   });
 
   return (
-    <div className=" min-h-screen text-white p-6 font-sans">
-      <h2 className="text-blue-400 text-2xl font-bold mb-4">Volunteer Management</h2>
+    <div className=" min-h-screen text-white p-6 font-sans pt-20">
 
       {/* Filter and Search */}
       <div className="flex flex-col sm:flex-row sm:items-end gap-4 mb-6">
@@ -54,7 +53,7 @@ export default function VolunteerSummaryPage() {
             id="filter"
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
-            className="bg-zinc-800 border border-zinc-600 text-white p-2 rounded w-full sm:w-64"
+            className="bg-[#12173f] border border-zinc-300 text-white p-2 rounded w-full sm:w-64"
           >
             {filters.map((f) => (
               <option key={f} value={f}>{f}</option>
@@ -70,22 +69,22 @@ export default function VolunteerSummaryPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Enter name..."
-            className="bg-zinc-800 border border-zinc-600 text-white p-2 rounded w-full"
+            className="bg-[#12173f] border border-zinc-300 text-white p-2 rounded w-full"
           />
         </div>
 
         <button
           onClick={() => router.push('/volunteerform')}
-          className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded self-start mt-2 sm:mt-0"
+          className="bg-[#448243] hover:bg-[#2e582e] px-4 py-2 rounded"
         >
           + Add New Volunteer
         </button>
       </div>
 
       {/* Volunteer Table */}
-      <table className="w-full table-auto text-left border-collapse bg-zinc-900 rounded">
+      <table className="w-full table-auto text-left border-collapse bg-[#12173f] rounded">
         <thead>
-          <tr className="border-b border-zinc-700">
+          <tr className="border-b border-zinc-300">
             <th className="p-3">Name</th>
             <th className="p-3">Status</th>
             <th className="p-3">Actions</th>
@@ -93,22 +92,23 @@ export default function VolunteerSummaryPage() {
         </thead>
         <tbody>
           {filteredVolunteers.map((vol) => (
-            <tr key={vol.id} className="border-b border-zinc-800 hover:bg-zinc-800">
+            <tr key={vol.id} className="border-b border-zinc-300 hover:bg-[#1c2355]">
               <td className="p-3">{vol.name}</td>
               <td className="p-3">{vol.status}</td>
               <td className="p-3 space-x-2">
                 <button
                   onClick={() => alert(`Viewing matches for ${vol.name}`)}
-                  className="text-sm bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded"
+                  className="text-sm bg-blue-700 hover:bg-blue-600 px-3 py-1 rounded"
                 >
                   View Matches
                 </button>
-                <button
-                  onClick={() => router.push(`/editvolunteer/${vol.id}`)}
-                  className="text-sm bg-yellow-600 hover:bg-yellow-700 px-3 py-1 rounded"
-                >
-                  Edit
-                </button>
+                <a href={`/volunteerInfo/${vol.id}`}>
+                  <button
+                    className="text-sm bg-yellow-600 hover:bg-yellow-700 px-3 py-1 rounded"
+                  >
+                    Edit
+                  </button>
+                </a>
               </td>
             </tr>
           ))}

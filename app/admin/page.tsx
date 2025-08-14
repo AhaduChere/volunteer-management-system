@@ -9,7 +9,7 @@ export default function page1() {
         <div className="flex flex-row gap-6 w-full max-w-sm">
           <a href="/manageVolunteers">
             <button
-              className="w-full py-4 px-6 bg-[#12173f] duration-200 rounded-lg text-lg font-semibold transition flex flex-col items-center justify-center gap-2"
+              className="w-full py-4 px-6 bg-[#12173f] hover:scale-105 border-transparent border-3 hover:border-[#ffffff] transition-colors duration-500  rounded-lg text-lg font-semibold flex flex-col items-center justify-center gap-2"
             >
                <img src="/volunteer.svg" alt="Camera Icon" width={1000} height={1000} />
               Manage Volunteers
@@ -18,12 +18,11 @@ export default function page1() {
 
         <a href="/manageOpportunities">
             <button
-              onClick={() => router.push('/opportunity')}
-              className="w-full py-4 px-6 bg-[#12173f] duration-200 rounded-lg text-lg font-semibold transition flex flex-col items-center justify-center gap-2"
+              className="w-full py-4 px-6 bg-[#12173f] hover:scale-105 border-transparent border-2 hover:border-[#ffffff] transition-colors duration-100  rounded-lg text-lg font-semibold flex flex-col items-center justify-center gap-2"
             >
               <img src="/opportunity.svg" alt="Camera Icon" width={1000} height={1000} />
               Manage Opportunities
-            </button>
+            </button>        
           </a>
         </div>
       </div>
