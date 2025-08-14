@@ -1,5 +1,6 @@
 'use client'
 import Image from 'next/image';
+
 export default function LoginForm() {
   const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
