@@ -1,11 +1,12 @@
 'use client'
-import React, { useState } from 'react';
 import Image from 'next/image';
 export default function LoginForm() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const username = formData.get("username")?.toString() || "";
+    const password = formData.get("password")?.toString() || "";
     if (!username || !password) return;
     const login = async () => {
       try {
@@ -16,7 +17,10 @@ export default function LoginForm() {
         });
         const data = await response.json();
         if (response.ok && data.token) {
-          document.cookie = `session_token=${data.token}; path=/;`;
+          const date = new Date();
+          date.setDate(date.getDate() + 7);
+          console.log(date.toUTCString);
+          document.cookie = `session_token=${data.token}; path=/; expires=${date.toUTCString()}`;
           window.location.reload();
         } else {
           alert(data.error || "Login failed");
@@ -29,33 +33,29 @@ export default function LoginForm() {
     await login();
   };
   return (
-    <form onSubmit={handleLogin} className="relative flex justify-center items-center mt-44">
-      <div className="min-h-[384px] min-w-[464px] px-8 py-6 bg-gray-900 rounded-xl">
-        <div className="flex flex-col justify-center items-center h-full select-none">
+    <form onSubmit={handleLogin} className="flex justify-center items-center h-screen">
+      <div className="min-h-[400px] min-w-[500px] px-8 py-6 bg-gray-900 rounded-xl">
+        <div className="flex flex-col items-center h-full select-none mb-2">
           <div className="flex flex-col items-center justify-center gap-2 mb-4">
-            <Image src="/Camera.svg" alt="Camera Icon" width={32} height={32} className="w-8 h-8" />
-            <p className="m-0 text-[16px] font-semibold text-white">Admin Login</p>
+            <Image src="/Camera.svg" alt="Camera Icon" width={46} height={46} />
+            <p className="m-0 text-[22px] font-semibold text-white">Admin Login</p>
           </div>
-          <div className="w-full flex flex-col gap-4">
+          <div className="w-full flex flex-col gap-3.5">
             <label className="font-semibold text-xs text-gray-400">Username</label>
             <input
               placeholder="Username"
               className="border rounded-lg px-3 py-2.5 mb-5 text-sm w-full outline-none border-gray-500 bg-gray-900 text-white"
               name="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
               required
             />
           </div>
-          <div className="w-full flex flex-col gap-4">
+          <div className="w-full flex flex-col gap-3.5">
             <label className="font-semibold text-xs text-gray-400">Password</label>
             <input
               placeholder="••••••••"
               className="border rounded-lg px-3 py-2.5 mb-5 text-sm w-full outline-none border-gray-500 bg-gray-900 text-white"
               type="password"
               name="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
