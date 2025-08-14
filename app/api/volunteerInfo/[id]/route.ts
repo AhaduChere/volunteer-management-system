@@ -64,7 +64,7 @@ export async function PATCH(req:NextRequest, context: { params: { id: string } }
       }
 
     if(Reflect.ownKeys(updateData).length === 0){
-        return NextResponse.json({ error: 'Missing Input' },{ status: 400 });
+        return NextResponse.json({ error: 'Missing Input' },{ status: 404 });
     }
 
     try{
@@ -84,6 +84,4 @@ export async function PATCH(req:NextRequest, context: { params: { id: string } }
         console.error(err);
         return NextResponse.json({ error: 'Sorry something went wrong' },{ status: 500 });
     }
-
-
 }

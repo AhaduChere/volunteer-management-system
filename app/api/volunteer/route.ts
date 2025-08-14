@@ -1,6 +1,5 @@
 import {prisma} from '@/lib/prisma';
 import { NextRequest, NextResponse } from 'next/server';
-//TODO: Need to figure out how to connect oppurtunities, volunteer info,and contact info
 
     export async function GET(){
             const volunteers = await prisma.volunteer.findMany();
