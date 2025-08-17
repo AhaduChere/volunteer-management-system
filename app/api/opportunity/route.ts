@@ -14,15 +14,16 @@ import { NextRequest, NextResponse } from 'next/server';
 
     export async function POST(req: NextRequest){
         const body = await req.json();
-        const { centerName } = body;
+        const { centerName, title } = body;
 
-        if(!centerName ){
+        if(!centerName || !title ){
             return NextResponse.json({error: 'Variable not found'},{status: 404});
         }
 
         const oppurtunity = await prisma.opportunity.create({
             data: {
                 center_name: centerName ? centerName : null,
+                title: title
             }
         });
 

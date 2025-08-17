@@ -90,8 +90,6 @@ export async function PATCH(req:NextRequest, context: { params: { id: string } }
         return NextResponse.json({ error: 'Missing Input' },{ status: 400 });
     }
 
-    console.log(updateData);
-
     try{
         const updatedOpportunity = await prisma.opportunity.update({
             where: {

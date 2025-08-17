@@ -54,6 +54,7 @@ model VolunteerInfo {
 model Opportunity {
   opp_id Int @id @default(autoincrement())
   center_name String
+  title String
   date_posted DateTime @default(now())
 
   Volunteer Volunteer[] @relation("VolunteerOpportunities")

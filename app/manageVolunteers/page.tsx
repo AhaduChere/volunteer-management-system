@@ -11,6 +11,7 @@ export default async function manageVolunteers() {
 
   // Extract the array and map to your Volunteer type
   const volunteers = (data.volunteers || []).map((v: Volunteer) => ({
+    id: v.v_id,
     firstName: v.f_name,
     lastName: v.l_name,
     status:
