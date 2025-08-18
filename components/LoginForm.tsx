@@ -20,7 +20,6 @@ export default function LoginForm() {
         if (response.ok && data.token) {
           const date = new Date();
           date.setDate(date.getDate() + 7);
-          console.log(date.toUTCString);
           document.cookie = `session_token=${data.token}; path=/; expires=${date.toUTCString()}`;
           window.location.reload();
         } else {
