@@ -24,7 +24,7 @@ export async function GET(req:NextRequest, context: { params: { id: string } }){
 
 export async function PATCH(req:NextRequest, context: { params: { id: string } }){
     const body = await req.json();
-    const { first_name, last_name, phone, email } = body;
+    const { first_name, last_name, ec_phone, ec_email } = body;
     const params = await context.params;
     const id = params.id
 
@@ -45,12 +45,12 @@ export async function PATCH(req:NextRequest, context: { params: { id: string } }
         updateData.last_name = last_name;
       }
       
-      if (phone !== undefined) {
-        updateData.phone = phone;
+      if (ec_phone !== undefined) {
+        updateData.phone = ec_phone;
       }
 
-      if (email !== undefined) {
-        updateData.email = email;
+      if (ec_email !== undefined) {
+        updateData.email = ec_email;
       }
 
     if(Reflect.ownKeys(updateData).length === 0){

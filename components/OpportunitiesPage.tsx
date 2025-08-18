@@ -108,12 +108,13 @@ export default function OpportunitiesPage({ intialOpportunities }: { intialOppor
                 >
                   View Matches
                 </button>
+                <a href={`/opportunities/${opp.id}/edit`}>
                 <button
-                  onClick={() => router.push(`/opportunities/${opp.id}/edit`)}
                   className="bg-yellow-600 hover:bg-yellow-500 px-3 py-1 rounded text-sm"
                 >
                   Edit
                 </button>
+                </a>
                 <button
                   onClick={() => deleteOpportunity(opp.id)}
                   className="bg-red-700 hover:bg-red-600 px-3 py-1 rounded text-sm"

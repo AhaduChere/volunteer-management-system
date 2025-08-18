@@ -32,6 +32,7 @@ export async function GET(req:NextRequest, context: { params: { id: string } }){
 
     try{
         const volunteer = await findVolunteer(Number(id));
+        console.log(volunteer);
 
         if(volunteer == null){
             return NextResponse.json({error: 'Volunteer not found'},{status: 404});
@@ -88,8 +89,6 @@ export async function PATCH(req:NextRequest, context: { params: { id: string } }
     }
 
     let updateData: any = {};
-
-    console.log(userId + ' ' + fName + ' ' + lName + ' ' + approvalStatus);
 
     if(userId !== undefined){
         updateData.user_id = userId;

@@ -177,6 +177,4 @@ export async function PATCH(req:NextRequest, context: { params: { id: string } }
         console.error(err);
         return NextResponse.json({ error: 'Sorry something went wrong' },{ status: 500 });
     }
-
-
 }
