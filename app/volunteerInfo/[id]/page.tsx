@@ -102,7 +102,7 @@ export default function EditVolunteerPage() {
       await fetch(`http://localhost:3000/api/emergencyContactInfo/${id}`, { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(emergencyContactData) });
   
     alert('Changes saved successfully!');
-    window.location.href = "/admin";
+    window.location.href = "/manageVolunteers";
   };
 
   return (
@@ -136,47 +136,6 @@ export default function EditVolunteerPage() {
         )}
       </div>
     ))}
-
-        {/* <div className="col-span-1">
-          <label htmlFor="driver_license_on_file" className="block text-zinc-200 mb-1">Driver's License on File</label>
-          <select
-            id="driver_license_on_file"
-            name="driver_license_on_file"
-            defaultValue={volunteer.driver_license_on_file ? 'true' : 'false'}
-            className="w-full p-2 bg-[#12173f] text-white border border-zinc-300 rounded"
-          >
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-          </select>
-        </div>
-
-        <div className="col-span-1">
-          <label htmlFor="ssn_on_file" className="block text-zinc-200 mb-1">Social Security Card on File</label>
-          <select
-            id="ssn_on_file"
-            name="ssn_on_file"
-            defaultValue={volunteer.ssn_on_file ? 'true' : 'false'}
-            className="w-full p-2 bg-[#12173f] text-white border border-zinc-300 rounded"
-          >
-            <option value="true">Yes</option>
-            <option value="false">No</option>
-          </select>
-        </div>
-
-        <div className="col-span-1">
-          <label htmlFor="approval_status" className="block text-zinc-200 mb-1">Approval Status</label>
-          <select
-            id="approval_status"
-            name="approval_status"
-            defaultValue={volunteer.approval_status}
-            className="w-full p-2 bg-[#12173f] text-white border border-zinc-300 rounded"
-          >
-            <option value="Approved">Approved</option>
-            <option value="Pending">Pending</option>
-            <option value="Disapproved">Disapproved</option>
-            <option value="Inactive">Inactive</option>
-          </select>
-        </div> */}
 
         <div className="col-span-full">
           <button
