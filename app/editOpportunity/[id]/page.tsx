@@ -1,7 +1,9 @@
 'use client'
+import { useParams } from "next/navigation";
 import React from "react";
 
-export default function AddOpportunityPage() {
+export default function EditOpportunityPage() {
+    const { id } = useParams<{ id: string }>();
   async function FormSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
@@ -15,25 +17,23 @@ export default function AddOpportunityPage() {
     }
 
     // Create plain object for API
-    const newOpportunity = {
-      title: data.title,
+    const editOpportunity = {
       centerName: data.centerName,
-     
     };
 
     try {
-      const response = await fetch("http://localhost:3000/api/opportunity", {
-        method: "POST",
+      const response = await fetch(`http://localhost:3000/api/opportunity/${id}`, {
+        method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newOpportunity),
+        body: JSON.stringify(editOpportunity),
       });
 
       if (response.ok) {
-        alert("Opportunity Added!");
+        alert("Opportunity Edited!");
         window.location.href = "/manageOpportunities"; // redirect to manage opportunities
       } else {
         const res = await response.json();
-        alert(res.error || "Failed to add opportunity");
+        alert(res.error || "Failed to edit opportunity");
       }
     } catch (err) {
       console.error("Error:", err);
@@ -45,19 +45,10 @@ export default function AddOpportunityPage() {
     <div className="min-h-screen text-white p-6 font-sans pt-20">
       <div className="bg-[#0b122d] rounded-md p-6 border border-zinc-700 max-w-lg mx-auto">
         <h2 className="text-xl md:text-2xl font-semibold mb-4 text-center">
-          New Opportunity
+          Edit Opportunity
         </h2>
 
         <form onSubmit={FormSubmit} className="space-y-6">
-          <div>
-            <label className="block text-sm mb-1 text-zinc-300">Title</label>
-            <input
-              name="title"
-              placeholder="Food Drive Organizer"
-              className="bg-[#12173f] border border-zinc-300 text-white p-2 rounded w-full"
-              required
-            />
-          </div>
 
           <div>
             <label className="block text-sm mb-1 text-zinc-300">Center</label>

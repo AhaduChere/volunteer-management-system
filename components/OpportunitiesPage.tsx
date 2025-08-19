@@ -108,7 +108,7 @@ export default function OpportunitiesPage({ intialOpportunities }: { intialOppor
                 >
                   View Matches
                 </button>
-                <a href={`/opportunities/${opp.id}/edit`}>
+                <a href={`/editOpportunity/${opp.id}`}>
                 <button
                   className="bg-yellow-600 hover:bg-yellow-500 px-3 py-1 rounded text-sm"
                 >
